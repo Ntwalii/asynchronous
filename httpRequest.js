@@ -1,28 +1,33 @@
-// function getToDo(callback){const request=new XMLHttpRequest();
+    function getToDo(resource){
+        return new Promise((resolve,reject)=>{
+            const request=new XMLHttpRequest();
 
-// request.addEventListener('readystatechange',()=>{
+            request.addEventListener('readystatechange',()=>{
+            
+                if(request.readyState===4&&request.status===200){
+                    resolve(JSON.parse(request.responseText))
+                }
+                else if(request.readyState===4){
+                    reject("Done but uhhhh")
+                }
+            })
+            
+            request.open('GET',resource);
+            request.send();
+        })
 
-//     if(request.readyState===4&&request.status===200){
-//         callback(undefined,JSON.parse(request.responseText))
-//     }
-//     else if(request.readyState===4){
-//         callback("Done but uhhhh",undefined)
-//     }
-// })
+    }
 
-// request.open('GET','https://jsonplaceholder.typicode.com/todos');
-// request.send();
-// }
-
-let getSomething=()=>{
-    return new Promise((resolve,reject)=>{
-        // resolve("Passed successfully");
-        reject("Rejected ahaha");
+    getToDo("https://jsonplaceholder.typicode.com/todos/1")
+    .then((data)=>{
+        console.log(data)
+        return getToDo("https://jsonplaceholder.typicode.com/todos/2")
     })
-}
-
-getSomething().then(data=>{
-    console.log(data);
-},data=>{
-    console.error(data)
-})
+    .then((data)=>{
+        console.log(data)
+        return getToDo("https://jsonplaceholder.typicode.com/todoos/3")
+    })
+    .then((data)=>{
+        console.log(data)
+    })
+    .catch((err)=>console.log(err))
