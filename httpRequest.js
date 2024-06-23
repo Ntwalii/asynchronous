@@ -5,10 +5,10 @@
             request.addEventListener('readystatechange',()=>{
             
                 if(request.readyState===4&&request.status===200){
-                    resolve(JSON.parse(request.responseText))
+                    resolve(request.responseText)
                 }
                 else if(request.readyState===4){
-                    reject("Done but uhhhh")
+                    reject('Done but uhhhh')
                 }
             })
             
