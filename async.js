@@ -1,4 +1,8 @@
 let getToDo = async () => { 
+    return "Hello"
 };
 
-console.log( getToDo());
+getToDo()
+.then(data=>{
+    console.log(data)
+})
