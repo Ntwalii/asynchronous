@@ -7,11 +7,10 @@ const fetcher=async (url)=>{
     const signal=controller.signal
     setTimeout(()=>{
         controller.abort();
-    },100)
+    },1000)
     const request=await fetch(url,{signal})
     const data=await request.json();
     console.log(data);
-    console.log(`money`)
     setTimeout(()=>{
         controller.abort();
     },1)
