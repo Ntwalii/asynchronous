@@ -8,7 +8,7 @@ const timer=(url)=>{
             controller.abort()   
             console.log("Time out")
         
-    },10)
+    },1000)
     fetch(url,{signal})
     .then((data)=>{
         clearTimeout(seeter)

@@ -1,6 +1,7 @@
 async function fetchWithoutDelay(trials) {
   if (trials <= 0) {
-    return "Limit reached";
+    console.log("Limit reached")
+    return; 
   }
   try {
     trials--;
@@ -9,7 +10,7 @@ async function fetchWithoutDelay(trials) {
 
     const timer = setTimeout(() => {
       controller.abort();
-    }, 20);
+    }, 2000);
 
     const data = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
       signal,

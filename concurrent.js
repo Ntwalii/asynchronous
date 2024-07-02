@@ -5,7 +5,7 @@ async function fetchUserData() {
   
       const timer = setTimeout(() => {
         controller.abort();
-      }, 50);
+      }, 5000);
   
       const promise1 = fetch("https://jsonplaceholder.typicode.com/todos/1", {
         signal,
@@ -15,7 +15,7 @@ async function fetchUserData() {
         { signal }
       );
       const data = await Promise.all([promise1, promise2]);
-      const responses =await data.map((el,index) => {
+      const responses = data.map((el,index) => {
         clearTimeout(timer);
         if (!el.ok) {
           throw new Error(`Failed to fetch data ${index+1}`);

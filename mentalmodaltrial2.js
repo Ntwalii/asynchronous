@@ -2,7 +2,6 @@
 //  every two seconds and stops displaying after 5 seconds
 
 const answer=()=>{
-    let count=0;
     let interval=setInterval(()=>{
         console.log(2);
             },2000)

@@ -1,7 +1,7 @@
     const retry = async (url, count) => {
     try{
     const response = await fetch(url);
-    if (!response) throw new Error("retrying");
+    if (!response.ok) throw new Error("retrying");
     const data = await response.json();
     console.log(data);
     }
@@ -9,7 +9,7 @@
         count--;
         if(count>0){
         console.log("Trying");
-        retry('https://jsonplaceholder.typicode.om/todos',count);
+        retry(url,count);
         }
         else{
             console.log("Done retrying")
@@ -18,4 +18,4 @@
     }
     };
 
-    retry("https://jsonplaceholder.typicode.om/todos", 5);
+    retry("https://jsonplaceholder.typicode.com/todos", 5);
