@@ -7,7 +7,7 @@ const fetcher = async (url) => {
     setTimeout(() => {
       controller.abort();
     }, 10);
-    const request = await fetch(url, { signal });
+    const request = await fetch(url, { signal: signal });
     const data = await request.json();
     console.log(data);
   } catch (error) {
